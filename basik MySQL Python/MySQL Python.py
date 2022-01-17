@@ -1,20 +1,13 @@
 from mysql.connector import connect
 
-# 01 - make a connection to the database
-db = connect(
-    host = "localhost",
-    user = "root",
-    password = "sayaBelajar"
-)
-print(db)
-
-# 02 - make a database
+# 01 - make a database
 cursor_db = db.cursor() 
 cursor_db.execute("DROP DATABASE IF EXISTS school")
 cursor_db.execute("CREATE DATABASE IF NOT EXISTS school")
 cursor_db.close()
 db.close()
-    # make a new connection
+
+    # make a new connection to database local
 db = connect(
   host="localhost",
   user="root",
@@ -22,7 +15,7 @@ db = connect(
   database="school"
 )
 
-# 03 - create a table attribute
+# 02 - create a table attribute
 cursor_db = db.cursor() 
 cursor_db.execute(
     '''CREATE Table students(
@@ -33,7 +26,7 @@ cursor_db.execute(
     )'''
 )
 
-# 04 - insert data to table
+# 03 - insert data to table
     # side 1
 query = '''
 INSERT INTO students (nama, id_kelas, tahun_masuk)
@@ -50,28 +43,21 @@ db.commit()
 
     # side
 input_list = [
-
     ('shiroe', 21, 2012),
     ('akatsuki', 21, 2012),
     ('naotsugu', 21, 2012),
     ('minori', 13, 2013),
     ('touya', 13, 2013),
     ('kanami', 31, 2011)
-
 ]
 
 for data in input_list:
 
     query = '''
-
     INSERT INTO students (nama, id_kelas, tahun_masuk)
-
     VALUES (%s, %s, %s)
-
     '''
-
     cursor_db.execute(query, data)
-
 db.commit()
 
 '''
