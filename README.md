@@ -1,2 +1,2 @@
 # MySQL-Python
-Python adalah salah satu database driver. Database driver merupakan peranti lunak yang memberikan akses pada suatu aplikasi untuk tersambung pada basisdata.
+Python is a database driver. Database drivers are software that gives an application access to connect to a database.
