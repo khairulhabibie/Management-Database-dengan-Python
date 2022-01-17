@@ -1,6 +1,6 @@
 from mysql.connector import connect
 
-# 01 - membuat koneksi dengan database
+# 01 - make a connection to the database
 db = connect(
     host = "localhost",
     user = "root",
@@ -8,13 +8,13 @@ db = connect(
 )
 print(db)
 
-# 02 - membuat database
+# 02 - make a database
 cursor_db = db.cursor() 
 cursor_db.execute("DROP DATABASE IF EXISTS school")
 cursor_db.execute("CREATE DATABASE IF NOT EXISTS school")
 cursor_db.close()
 db.close()
-    # membuat koneksi baru
+    # make a new connection
 db = connect(
   host="localhost",
   user="root",
@@ -22,7 +22,7 @@ db = connect(
   database="school"
 )
 
-# 03 - membuat atribut table
+# 03 - create a table attribute
 cursor_db = db.cursor() 
 cursor_db.execute(
     '''CREATE Table students(
@@ -33,8 +33,8 @@ cursor_db.execute(
     )'''
 )
 
-# 04 - memasukkan data kedalam table
-    # Cara 1
+# 04 - insert data to table
+    # side 1
 query = '''
 INSERT INTO students (nama, id_kelas, tahun_masuk)
 VALUES
@@ -48,7 +48,7 @@ VALUES
 cursor_db.execute(query)
 db.commit()
 
-# cara 2
+    # side
 input_list = [
 
     ('shiroe', 21, 2012),
@@ -75,20 +75,20 @@ for data in input_list:
 db.commit()
 
 '''
-    # menutup database
+    # close cusor and database
 cursor_db.close()
 db.close()
 '''
 
-# 05 - melihat data di dalam table
+# 05 - show data in database
 query = '''select * from students'''
 cursor_db.execute(query)
 data = cursor_db.fetchall()
 
-#Untuk menampilkan kita bisa menggunakan for loop,
+    # using loop
 for row in data:
     print(row)
 
-# Menutup database
+    # close database
 cursor_db.close()
 db.close()
